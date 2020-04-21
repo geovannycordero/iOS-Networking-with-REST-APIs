@@ -19,17 +19,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // TODO: GET a list of gists
         
-        let testGist = Gist(id: nil, isPublic: true, description: "Hello World!")
-        
-        do {
-            let gistData = try JSONEncoder().encode(testGist)
-            let stringData = String(data: gistData, encoding: .utf8)
-            print(stringData)
-        } catch {
-            print("Encoding failed...")
-        }
-        
-        DataService.shared.fetchGists { (result) in
+        /* DataService.shared.fetchGists { (result) in
             switch result {
             case .success(let gists):
                 for gist in gists {
@@ -38,11 +28,20 @@ class ViewController: UIViewController {
             case .failure(let error):
                 print(error)
             }
-        }
+        } */
     }
 
     @IBAction func createNewGist(_ sender: UIButton) {
         // TODO: POST a new gist
+        
+        DataService.shared.createNewGist { (result) in
+            switch result {
+            case .success(let json):
+                print(json)
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
     
     // MARK: Utilities
