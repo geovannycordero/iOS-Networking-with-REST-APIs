@@ -13,6 +13,15 @@ class DataService {
   
   // fileprivate let baseURLString = "https://api.github.com"
   
+  let customSession: URLSession = {
+    let customConfig = URLSessionConfiguration.default
+    // let backgroundConfig = URLSessionConfiguration.background(withIdentifier: "")
+    customConfig.networkServiceType = .video
+    customConfig.allowsCellularAccess = true
+    
+    return URLSession(configuration: customConfig)
+  }()
+  
   func fetchGists(completion: @escaping (Result<[Gist], Error>) -> Void) {
     // var baseURL = URL(string: baseURLString)
     // baseURL?.appendPathComponent("/somePath")
