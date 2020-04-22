@@ -29,7 +29,15 @@ class ViewController: UIViewController {
                 print(error)
             }
         } */
-    }
+      
+      DataService.shared.startUnstart(gistId: "c0cf98a7ed8b6d99847931c46a6f985d", star: true) { (success) in
+        if success {
+          print("Gist successfully starred!")
+        } else {
+          print("Gist was no able to be starred!")
+        }
+      }
+  }
 
     @IBAction func createNewGist(_ sender: UIButton) {
         // TODO: POST a new gist
